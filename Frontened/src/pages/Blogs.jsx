@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../contaxt/AuthProvider";
+import { useAuth } from "../contaxt/AuthProvider"; 
 import { Link } from "react-router-dom";
 
 function Blogs() {
@@ -15,15 +15,15 @@ function Blogs() {
         {/* Blog Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {blogs && blogs.length > 0 ? (
-            blogs.map((blog, index) => (
+            blogs.map((blog) => (
               <Link
-                to={`/blog/${blog.id}`}
-                key={index}
+                to={`/blog/${blog._id}`}
+                key={blog.id} // Ensure key is unique
                 className="relative block rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 <img
-                  src={blog?.blogImage?.url}
-                  alt={blog?.title}
+                  src={blog?.blogImage?.url || 'defaultImagePath.jpg'} // Fallback for image
+                  alt={blog?.title || 'Default Title'} // Fallback for alt text
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-black opacity-40"></div>
